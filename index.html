@@ -163,7 +163,38 @@
       .brand{min-width:unset}
       .col-6,.col-4,.col-8{grid-column: span 12}
       .links{justify-content:flex-start}
-    }
+    .site-header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(10,10,14,0.85);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,0,0,0.2);
+}
+
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+}
+
+.logo{
+  height:42px;
+}
+
+nav a{
+  margin-left:18px;
+  color:#ddd;
+  text-decoration:none;
+  font-weight:600;
+}
+
+nav a:hover{
+  color:#ff2a2a;
+}
   </style>
 </head>
 <body>
