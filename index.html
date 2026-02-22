@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b0b0e" />
+  <meta name="description" content="RaceRoom Academy — Developing Race Champions. Racecraft coaching from novice to esports." />
+  <title>RaceRoom Academy</title>
+  <style>
+    :root{
+      --bg:#0b0b0e;
+      --panel:#111118;
+      --text:#f3f4f6;
+      --muted:#a7a7b3;
+      --red:#e10600;
+      --line:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+      --max: 1080px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 70% -10%, rgba(225,6,0,.25), transparent 60%),
+                  radial-gradient(900px 500px at 0% 10%, rgba(225,6,0,.14), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px;}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:16px; padding:12px 14px;
+      background: rgba(17,17,24,.65);
+      border:1px solid var(--line);
+      border-radius:999px;
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      position: sticky; top: 14px; z-index: 50;
+    }
+    .brand{display:flex; align-items:center; gap:12px; min-width:260px;}
+    .brand img{
+      width:46px; height:46px; border-radius:12px;
+      border:1px solid rgba(255,255,255,.12);
+      object-fit:cover;
+      background:#0b0b0e;
+    }
+    .brand b{letter-spacing:.4px}
+    .brand small{display:block; color:var(--muted); margin-top:2px; font-size:12px}
+    .links{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .links a{
+      text-decoration:none; color:var(--muted);
+      font-size:14px; padding:8px 10px; border-radius:999px;
+    }
+    .links a:hover{color:var(--text); background: rgba(255,255,255,.06)}
+
+    .hero{
+      margin-top:22px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(17,17,24,.86), rgba(17,17,24,.55));
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .hero::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background: linear-gradient(90deg, transparent, rgba(225,6,0,.18), transparent);
+      transform: translateX(-50%);
+      animation: sweep 7s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes sweep{ 0%{transform:translateX(-60%)} 100%{transform:translateX(140%)} }
+    .hero-inner{
+      padding:26px;
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:18px;
+      align-items:center;
+    }
+    h1{
+      margin:0 0 10px;
+      font-size: clamp(30px, 4vw, 46px);
+      line-height:1.1;
+      letter-spacing:.3px;
+    }
+    .tagline{ margin:0 0 16px; color:var(--muted); font-size: clamp(14px, 1.6vw, 18px); }
+    .cta{ display:flex; gap:10px; flex-wrap:wrap; margin-top:16px; }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.06);
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(225,6,0,.95), rgba(225,6,0,.55));
+      border-color: rgba(225,6,0,.65);
+    }
+    .btn:hover{filter: brightness(1.06)}
+    .pillrow{display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 0}
+    .pill{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      padding:8px 12px; border-radius:999px;
+      color:var(--text); font-size:13px;
+    }
+    .card{
+      border:1px solid var(--line);
+      background: rgba(17,17,24,.6);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .title{ display:flex; align-items:flex-end; justify-content:space-between; gap:14px; margin-top:22px; }
+    .title h2{ margin:0; font-size:22px; }
+    .title p{ margin:0; color:var(--muted); font-size:14px; }
+    .grid{ display:grid; grid-template-columns: repeat(12, 1fr); gap:16px; margin-top:16px; }
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    .col-8{grid-column: span 8}
+    .list{margin:10px 0 0; padding-left:18px; color:var(--muted)}
+    .video{ display:grid; gap:10px; }
+    .video a{
+      text-decoration:none;
+      display:flex; justify-content:space-between; gap:10px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(255,255,255,.04);
+    }
+    .video a:hover{background: rgba(255,255,255,.06)}
+    .video .meta{color:var(--muted); font-size:13px}
+    .badge{
+      display:inline-flex; align-items:center; justify-content:center;
+      min-width:34px; padding:6px 10px;
+      border-radius:999px;
+      border:1px solid rgba(225,6,0,.45);
+      background: rgba(225,6,0,.10);
+      font-weight:900; font-size:12px;
+      white-space:nowrap;
+    }
+    .hero-logo{
+      width: 100%;
+      max-width: 430px;
+      margin: 0 auto;
+      display:block;
+      filter: drop-shadow(0 14px 28px rgba(0,0,0,.45));
+    }
+    .note{
+      margin-top:10px; color:var(--muted); font-size:13px;
+      border-top:1px solid var(--line); padding-top:10px;
+    }
+    .footer{ margin:26px 0 12px; color:var(--muted); font-size:13px; text-align:center; }
+    @media (max-width: 860px){
+      .hero-inner{grid-template-columns: 1fr}
+      .brand{min-width:unset}
+      .col-6,.col-4,.col-8{grid-column: span 12}
+      .links{justify-content:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header class="nav">
+      <div class="brand">
+        <img src="assets/logo_no_strapline.jpg" alt="RaceRoom Academy logo" />
+        <div>
+          <b>RaceRoom Academy</b>
+          <small>Developing Race Champions</small>
+        </div>
+      </div>
+
+      <nav class="links">
+        <a href="#training">Training</a>
+        <a href="#coaching">Coaching</a>
+        <a href="#community">Discord</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main class="hero" id="top">
+      <div class="hero-inner">
+        <div>
+          <h1>Racecraft coaching from novice to esports.</h1>
+          <p class="tagline">
+            Structured lessons, race analysis, and practical drills — designed to build consistency,
+            confidence, and race-winning decision-making in <b>RaceRoom</b>.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="#training">Browse Training</a>
+            <a class="btn" href="https://discord.gg/ZG4yKhffph" target="_blank" rel="noopener">Join Discord</a>
+          </div>
+
+          <div class="pillrow">
+            <span class="pill">Race starts</span>
+            <span class="pill">Overtaking</span>
+            <span class="pill">Defensive driving</span>
+            <span class="pill">Qualifying pace</span>
+            <span class="pill">Consistency</span>
+          </div>
+
+          <div class="note">
+            <b>Tip:</b> Add your YouTube channel link later — this page already has a “Training Library” section ready for it.
+          </div>
+        </div>
+
+        <aside class="card">
+          <img class="hero-logo" src="assets/logo_with_strapline.png" alt="RaceRoom Academy — Developing Race Champions" />
+          <div class="note" style="border-top:none;padding-top:0;margin-top:10px">
+            <b>Primary Hub:</b> Discord community & coaching.
+          </div>
+        </aside>
+      </div>
+    </main>
+
+    <section id="training">
+      <div class="title">
+        <h2>Training Library</h2>
+        <p>Add your YouTube lesson links here when ready.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col-6">
+          <h3 style="margin:0 0 8px;">Race Starts</h3>
+          <p style="margin:0;color:var(--muted)">Launch, positioning, first-corner survival, and gaining places safely.</p>
+          <div class="video" style="margin-top:12px">
+            <a href="#" onclick="return false;">
+              <div>
+                <b>Lesson 01 — (Add YouTube link)</b>
+                <div class="meta">Coming soon</div>
+              </div>
+              <span class="badge">ADD</span>
+            </a>
+            <a href="#" onclick="return false;">
+              <div>
+                <b>Lesson 02 — (Add YouTube link)</b>
+                <div class="meta">Coming soon</div>
+              </div>
+              <span class="badge">ADD</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card col-6">
+          <h3 style="margin:0 0 8px;">Overtaking & Defence</h3>
+          <p style="margin:0;color:var(--muted)">Setups, pressure, clean passes, and smart defending.</p>
+          <div class="video" style="margin-top:12px">
+            <a href="#" onclick="return false;">
+              <div>
+                <b>Lesson 03 — (Add YouTube link)</b>
+                <div class="meta">Coming soon</div>
+              </div>
+              <span class="badge">ADD</span>
+            </a>
+            <a href="#" onclick="return false;">
+              <div>
+                <b>Lesson 04 — (Add YouTube link)</b>
+                <div class="meta">Coming soon</div>
+              </div>
+              <span class="badge">ADD</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card col-8">
+          <h3 style="margin:0 0 8px;">Qualifying & Lap Time</h3>
+          <p style="margin:0;color:var(--muted)">Braking technique, apex choice, exit speed, and repeatable pace.</p>
+          <ul class="list">
+            <li>Brake points and consistency</li>
+            <li>Late apex vs early apex decisions</li>
+            <li>Exit speed and traction habits</li>
+          </ul>
+        </div>
+
+        <div class="card col-4" id="community">
+          <h3 style="margin:0 0 8px;">Discord (Main Hub)</h3>
+          <p style="margin:0;color:var(--muted)">Coaching, discussion, and updates live here:</p>
+          <div class="cta" style="margin-top:12px">
+            <a class="btn primary" href="https://discord.gg/ZG4yKhffph" target="_blank" rel="noopener">Join Discord</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="coaching">
+      <div class="title">
+        <h2>Coaching</h2>
+        <p>Edit these packages any time.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col-4">
+          <h3 style="margin:0 0 8px;">Quick Review</h3>
+          <p style="margin:0;color:var(--muted)">You send a clip → you get key fixes + an action plan.</p>
+          <ul class="list">
+            <li>Corner-by-corner notes</li>
+            <li>Racecraft decisions</li>
+            <li>Priority drill list</li>
+          </ul>
+        </div>
+
+        <div class="card col-4">
+          <h3 style="margin:0 0 8px;">1:1 Coaching</h3>
+          <p style="margin:0;color:var(--muted)">Structured session focused on your biggest time losses.</p>
+          <ul class="list">
+            <li>Technique + mindset</li>
+            <li>Starts & battles</li>
+            <li>Consistency training</li>
+          </ul>
+        </div>
+
+        <div class="card col-4">
+          <h3 style="margin:0 0 8px;">Esports Prep</h3>
+          <p style="margin:0;color:var(--muted)">Refine pressure handling and race IQ for league/esports.</p>
+          <ul class="list">
+            <li>Risk management</li>
+            <li>Overtake planning</li>
+            <li>Strategy</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="title">
+        <h2>Contact</h2>
+        <p>Add your Facebook + email later.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card col-8">
+          <h3 style="margin:0 0 8px;">Links</h3>
+          <div class="video" style="margin-top:12px">
+            <a href="https://discord.gg/ZG4yKhffph" target="_blank" rel="noopener">
+              <div>
+                <b>Discord</b>
+                <div class="meta">https://discord.gg/ZG4yKhffph</div>
+              </div>
+              <span class="badge">JOIN</span>
+            </a>
+            <a href="#" onclick="return false;">
+              <div>
+                <b>YouTube</b>
+                <div class="meta">Create channel → paste link here</div>
+              </div>
+              <span class="badge">SOON</span>
+            </a>
+            <a href="#" onclick="return false;">
+              <div>
+                <b>Facebook</b>
+                <div class="meta">Paste your page/group link here</div>
+              </div>
+              <span class="badge">SOON</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="card col-4">
+          <h3 style="margin:0 0 8px;">Brand</h3>
+          <p style="margin:0;color:var(--muted)">
+            <span style="color:#fff;font-weight:900">RaceRoom Academy</span><br/>
+            Developing Race Champions
+          </p>
+          <p style="margin:12px 0 0;color:var(--muted);font-size:13px">
+            You can swap which logo appears in the header/hero by changing the image file used in the HTML.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      © <span id="y"></span> RaceRoom Academy • Developing Race Champions
+    </div>
+
+  </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
